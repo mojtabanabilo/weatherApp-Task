@@ -14,9 +14,9 @@ import Suncloudangledrain from "../../assets/images/Suncloudangledrain.png";
 
 function Login() {
   return (
-    <Box className={styles.loginContainer}>
-      <Box className={styles.login}>
-        <Box className={styles.userLogin}>
+    <Box component="div" className={styles.loginContainer}>
+      <Box component="div" className={styles.login}>
+        <Box component="div" className={styles.userLogin}>
           <Typography variant="h3" sx={{ fontWeight: 700, mb: 6 }}>
             Login
           </Typography>
