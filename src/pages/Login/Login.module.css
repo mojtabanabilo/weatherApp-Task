@@ -1,0 +1,126 @@
+.loginContainer {
+  width: 90%;
+  max-width: 1500px;
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginContainer .login {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: -5px 14px 15px #00000028;
+  margin: 60px 0;
+}
+
+.loginContainer .login .userLogin {
+  width: 50%;
+  height: 100%;
+  padding: 0 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+}
+
+.loginContainer .login .pic {
+  width: 50%;
+  height: 100%;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 0 100px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #d3e1e7;
+}
+
+.loginContainer .login .pic img {
+  position: absolute;
+  width: 45%;
+  height: auto;
+  background: transparent;
+  filter: drop-shadow(0 40px 40px #00000086);
+}
+
+.loginContainer .login .pic img:nth-child(1) {
+  position: absolute;
+  top: 6%;
+  right: 10%;
+}
+.loginContainer .login .pic img:nth-child(2) {
+  position: absolute;
+  top: 30%;
+  right: 50%;
+}
+.loginContainer .login .pic img:nth-child(3) {
+  position: absolute;
+  top: 55%;
+  right: 10%;
+}
+
+/* laptop & desktop monitors */
+@media (max-width: 1250px) {
+  .loginContainer .login .pic img {
+    min-width: 260px;
+  }
+  .loginContainer .login .pic img:nth-child(2) {
+    position: absolute;
+    top: 30%;
+    right: 40%;
+  }
+}
+@media (max-width: 1175px) {
+  .loginContainer .login {
+    max-width: 80%;
+  }
+  .loginContainer .login .userLogin {
+    width: 80%;
+    padding: 0 50px;
+  }
+  .loginContainer .login .pic {
+    display: none;
+  }
+}
+@media (max-width: 1024px) {
+  .loginContainer .login .pic img {
+    min-width: 330px;
+  }
+}
+
+/* mobile & tablet */
+@media (max-width: 570px) {
+  .loginContainer .login {
+    width: 100%;
+    padding: 0 10px;
+  }
+  .loginContainer .login .userLogin {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
+/* mobile */
+@media (max-height: 880px) and (max-width: 1175px) {
+  .loginContainer {
+    height: 700px;
+  }
+  .loginContainer .login {
+    padding: 60px 30px;
+  }
+}
+@media (max-height: 700px) and (max-width: 1175px) {
+  .loginContainer .login {
+    height: 580px;
+  }
+}
