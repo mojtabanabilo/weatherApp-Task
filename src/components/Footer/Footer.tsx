@@ -20,7 +20,7 @@ function Footer() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        mt: "auto",
+        // mt: "auto",
       }}
       className={styles.footer}
     >

@@ -1,21 +1,34 @@
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import Box from "@mui/material/Box";
+import Chart from "../../components/Chart/Chart";
+import { Box, Container } from "@mui/material";
 
 function Dashboard() {
   return (
-    // <Box component="main" sx={{
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    // }}>
-    //     <Header />
-    //     <Footer />
-    // </Box>
-    <Box sx={{ display: "flex", flexDirection: "column", maxWidth: "100vw", minHeight: "100vh" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
       <Header />
-      {/* <Box component="main" sx={{ flexGrow: 1 }}>
-        <Login />
-      </Box> */}
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#F3FAFE",
+        }}
+      >
+        <Container>
+          <Box component="section">
+            <Chart />
+          </Box>
+        </Container>
+      </Box>
       <Footer />
     </Box>
   );
