@@ -11,4 +11,5 @@
   max-width: 100vw;
   min-height: 100vh;
   background: #f3fafe;
+  overflow-x: hidden;
 }

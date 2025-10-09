@@ -1,4 +1,6 @@
-const options = {
+import type { ChartData, ChartOptions } from "chart.js";
+
+const options: ChartOptions<"line"> = {
   responsive: true,
   plugins: {
     legend: {
@@ -40,7 +42,7 @@ const options = {
   },
 };
 
-const data = {
+const data: ChartData<"line"> = {
   labels: [
     "Jan",
     "Feb",
@@ -58,21 +60,7 @@ const data = {
   datasets: [
     {
       label: "Temperature (°C)",
-      data: [
-        "20",
-        "40",
-        "30",
-        "10",
-        "15",
-        "25",
-        "8",
-        "38",
-        "26",
-        "36",
-        "33",
-        "11",
-        "2",
-      ],
+      data: [20, 40, 30, 10, 15, 25, 8, 38, 26, 36, 33, 11, 2],
       backgroundColor: "#007bff33",
       tension: 0,
       fill: true,
@@ -97,4 +85,4 @@ const data = {
   ],
 };
 
-export { options, data }
+export { options, data };

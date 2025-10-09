@@ -19,8 +19,7 @@ function Footer() {
           "linear-gradient(90deg, #F3FAFE 0%, #CCDDDD 62%, #F3FAFE 100%)",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
-        // mt: "auto",
+        alignItems: "center"
       }}
       className={styles.footer}
     >

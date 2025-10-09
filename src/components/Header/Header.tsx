@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import {
   AppBar,
   Box,
@@ -12,6 +13,7 @@ import {
   Container,
 } from "@mui/material";
 import styles from "./Header.module.css";
+import Modal from "../Modal/Modal";
 
 // logo
 import weatherLogo from "../../assets/images/weatherLogo.png";
@@ -19,8 +21,35 @@ import weatherLogo from "../../assets/images/weatherLogo.png";
 import setting from "../../assets/icons/settings.png";
 
 function Header() {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
+  const handleToggleModal = () => {
+    setIsModalOpen((prevState) => !prevState);
+  };
+
+  useEffect(() => {
+    console.log(isModalOpen);
+    if (!isModalOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node))
+        setIsModalOpen(false);
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isModalOpen]);
+
   return (
-    <Box component="header" className={styles.header}>
+    <Box
+      component="header"
+      sx={{ position: "relative" }}
+      className={styles.header}
+    >
       <AppBar
         sx={{
           height: "100px",
@@ -70,7 +99,11 @@ function Header() {
                 Weather Dashboard
               </Typography>
             </Box>
-            <Box component="div" sx={{ display: "flex" }} className={styles.options}>
+            <Box
+              component="div"
+              sx={{ display: "flex" }}
+              className={styles.options}
+            >
               <Box component="div" sx={{ minWidth: 300 }}>
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">
@@ -91,6 +124,7 @@ function Header() {
               </Box>
               <IconButton
                 aria-label="setting"
+                onClick={handleToggleModal}
                 sx={{
                   border: "solid 1px #BBC1C4",
                   width: "40px",
@@ -104,6 +138,11 @@ function Header() {
             </Box>
           </Container>
         </Toolbar>
+        {isModalOpen && (
+          <div ref={modalRef}>
+            <Modal />
+          </div>
+        )}
       </AppBar>
     </Box>
   );

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { options, data } from "../../utils/options/option";
+import { options, data } from "../../utils/constans/option";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -28,13 +28,19 @@ function Chart() {
       sx={{
         width: "100%",
         maxWidth: "1000px",
+        height: "250px",
         backgroundColor: "#E1E9EE",
-        boxShadow: "0px 2px 10px #0000001a",
         borderRadius: "24px",
         padding: "24px",
       }}
     >
-      <Line data={data} options={options} />
+      <Line
+        data={data}
+        options={{
+          ...options,
+          maintainAspectRatio: false, // 👈 خیلی مهم برای کنترل ارتفاع دستی
+        }}
+      />
     </Box>
   );
 }
