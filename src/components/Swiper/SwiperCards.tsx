@@ -177,8 +177,8 @@ export default function SwiperCards() {
       }}
     >
       <Typography
-        variant="h4"
-        sx={{ color: "#003464", fontWeight: 700, mb: 2 }}
+        variant="h5"
+        sx={{ color: "#003464", fontWeight: 700, mb: 1 }}
       >
         2 Weeks Forecast
       </Typography>

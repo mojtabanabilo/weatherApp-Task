@@ -38,7 +38,7 @@ function Chart() {
         data={data}
         options={{
           ...options,
-          maintainAspectRatio: false, // 👈 خیلی مهم برای کنترل ارتفاع دستی
+          maintainAspectRatio: false,
         }}
       />
     </Box>
