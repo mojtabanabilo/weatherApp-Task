@@ -19,7 +19,7 @@ function Dashboard() {
     try {
       startTransition(async () => {
         const response = await weatherApi.get(
-          `/weather?q=${selectedCity}&appid=${apiKey}&lang=en`
+          `/weather?q=${selectedCity}&appid=${apiKey}&lang=fa`
         );
         setWeatherdata(response?.data);
       });

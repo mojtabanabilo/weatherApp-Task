@@ -1,5 +1,7 @@
 import { useActionState } from "react";
+import type { ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./Login.module.css";
 import {
   Box,
@@ -12,6 +14,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { authApi } from "../../api";
+import { useLanguage } from "../../contexts/Language/LanguageContext";
 
 // images
 import Mooncloudfastwind from "../../assets/images/Mooncloudfastwind.png";
@@ -22,6 +25,8 @@ function Login() {
   const [state, formAction, isPending] = useActionState(authApiHandler, null);
   const navigate = useNavigate();
   const theme = useTheme();
+  const { setLanguage } = useLanguage();
+  const { t, i18n } = useTranslation();
 
   async function authApiHandler(
     previousState: any,
@@ -37,6 +42,11 @@ function Login() {
       console.error(e);
     }
   }
+  const handleLangChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const newLang = e.target.value as "fa" | "en";
+    setLanguage(newLang);
+    i18n.changeLanguage(newLang);
+  };
 
   return (
     <Box
@@ -89,12 +99,12 @@ function Login() {
               color: theme.palette.mode === "light" ? "#000000" : "#F3F4F7",
             }}
           >
-            Login
+            {t("login.title")}
           </Typography>
           <form action={formAction} style={{ width: "100%" }}>
             <TextField
               id="outlined-basic"
-              label="Enter Your Name"
+              label={t("login.placeholder")}
               variant="outlined"
               name="userName"
               fullWidth
@@ -114,7 +124,7 @@ function Login() {
               type="submit"
               disabled={isPending}
             >
-              {isPending ? "Loading..." : "LOGIN"}
+              {isPending ? t("login.pending") : t("login.btnTitle")}
             </Button>
           </form>
         </Box>
@@ -131,7 +141,7 @@ function Login() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            background: theme.palette.mode === 'light' ? "#d3e1e7" : "#3E4660",
+            background: theme.palette.mode === "light" ? "#d3e1e7" : "#3E4660",
           }}
         >
           <img
@@ -177,10 +187,11 @@ function Login() {
           color="primary"
           htmlFor="uncontrolled-native"
         >
-          Language
+          {t("login.selectTitle")}
         </InputLabel>
         <NativeSelect
-          defaultValue={30}
+          defaultValue={i18n.language}
+          onChange={handleLangChange}
           inputProps={{
             name: "language",
             id: "uncontrolled-native",

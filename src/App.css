@@ -1,5 +1,10 @@
+@font-face {
+  font-family: yekan;
+  src: url(./assets/font/Yekan.ttf);
+}
+
 * {
   padding: 0;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "yekan", Arial, Helvetica, sans-serif;
 }

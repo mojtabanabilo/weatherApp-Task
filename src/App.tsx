@@ -8,12 +8,14 @@ import {
   useLanguage,
 } from "./contexts/Language/LanguageContext";
 import { ThemeProvider } from "./contexts/Theme/ThemeContext";
+import { CacheProvider } from "@emotion/react";
+import { useMuiTheme } from "./utils/theme";
 import "./App.css";
 
 function AppContent() {
   const routing = useRoutes(routes);
   const { language } = useLanguage();
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <Box
@@ -24,13 +26,13 @@ function AppContent() {
         height: "100vh",
         overflow: "hidden",
         background: theme.palette.background.default,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        maxWidth: '100vw',
-        minHeight: '100vh',
-        overflowX: 'hidden',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        maxWidth: "100vw",
+        minHeight: "100vh",
+        overflowX: "hidden",
       }}
     >
       <Suspense fallback={<Loading />}>{routing}</Suspense>
@@ -41,10 +43,20 @@ function AppContent() {
 function App() {
   return (
     <LanguageProvider>
+      <AppWithMuiTheme />
+    </LanguageProvider>
+  );
+}
+
+function AppWithMuiTheme() {
+  const { cacheRtl } = useMuiTheme();
+
+  return (
+    <CacheProvider value={cacheRtl}>
       <ThemeProvider>
         <AppContent />
       </ThemeProvider>
-    </LanguageProvider>
+    </CacheProvider>
   );
 }
 

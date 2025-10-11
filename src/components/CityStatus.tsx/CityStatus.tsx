@@ -215,7 +215,7 @@ function CityStatus({ data, pending }: CityStatusProps) {
 
         <Box sx={{ my: 2 }}>
           <Typography variant="h4">
-            {data?.weather?.[0]?.main || "—"}
+            {data?.weather?.[0]?.description || "—"}
           </Typography>
           <Typography variant="subtitle2">
             Feels Like {formatTemperature(data?.main?.feels_like)}
