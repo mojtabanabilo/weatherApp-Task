@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import {
   AppBar,
   Box,
@@ -11,6 +12,7 @@ import {
   IconButton,
   Toolbar,
   Container,
+  useTheme,
 } from "@mui/material";
 import styles from "./Header.module.css";
 import Modal from "../Modal/Modal";
@@ -20,16 +22,21 @@ import weatherLogo from "../../assets/images/weatherLogo.png";
 // icon
 import setting from "../../assets/icons/settings.png";
 
-function Header() {
+interface HeaderProps {
+  setSelectedCity: Dispatch<SetStateAction<string>>;
+  city: string;
+}
+
+function Header({ setSelectedCity, city }: HeaderProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
+  const theme = useTheme();
 
   const handleToggleModal = () => {
     setIsModalOpen((prevState) => !prevState);
   };
 
   useEffect(() => {
-    console.log(isModalOpen);
     if (!isModalOpen) return;
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -53,8 +60,8 @@ function Header() {
       <AppBar
         sx={{
           height: "100px",
-          background: "#F3FAFE",
-          boxShadow: "0 10px 10px #0000001a",
+          background: theme.palette.background.default,
+          boxShadow: theme.palette.mode === 'light' ? "0 10px 10px #0000001a" : "0 10px 10px #A6A5A526",
         }}
         className={styles.appBar}
       >
@@ -93,7 +100,7 @@ function Header() {
               />
               <Typography
                 variant="subtitle1"
-                sx={{ color: "#003464", margin: "0 15px" }}
+                sx={{ color: theme.palette.text.primary, margin: "0 15px" }}
                 className={styles.headerTitle}
               >
                 Weather Dashboard
@@ -112,13 +119,16 @@ function Header() {
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value="0"
+                    value={city}
                     label="Select Your Location"
                     sx={{ height: "40px" }}
+                    onChange={(e) => setSelectedCity(e.target.value)}
                   >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    <MenuItem value="paris">Paris</MenuItem>
+                    <MenuItem value="london">London</MenuItem>
+                    <MenuItem value="tehran">Tehran</MenuItem>
+                    <MenuItem value="new york">New York</MenuItem>
+                    <MenuItem value="sydney">Sydney</MenuItem>
                   </Select>
                 </FormControl>
               </Box>

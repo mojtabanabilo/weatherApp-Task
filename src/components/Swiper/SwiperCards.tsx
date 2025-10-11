@@ -4,8 +4,9 @@ import {
   Card,
   CardMedia,
   CardActionArea,
+  useTheme,
 } from "@mui/material";
-import img from "../../assets/images/Rain cloud.png";
+import img from "../../assets/images/rainCloud.png";
 
 export default function SwiperCards() {
   const slides = Array.from({ length: 10 }).map((_, i) => ({
@@ -15,19 +16,21 @@ export default function SwiperCards() {
     img,
   }));
 
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
         maxWidth: "100%",
-        my:"30px",
+        my: "30px",
         padding: "30px 40px",
-        background: "#E1E9EE",
+        background: theme.palette.custom.bgComponents,
         borderRadius: "24px",
       }}
     >
       <Typography
         variant="h5"
-        sx={{ color: "#003464", fontWeight: 700, mb: 1 }}
+        sx={{ color: theme.palette.text.primary, fontWeight: 700, mb: 1 }}
       >
         2 Weeks Forecast
       </Typography>
@@ -56,7 +59,7 @@ export default function SwiperCards() {
               flex: "0 0 auto",
               width: 140,
               height: 300,
-              background: "#CDD9E0",
+              background: theme.palette.custom.bgCards,
               borderRadius: "24px",
             }}
           >
