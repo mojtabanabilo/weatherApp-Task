@@ -1,4 +1,5 @@
 import { Box, Typography, useTheme, Container } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import styles from "./Footer.module.css";
 // image
 import nadinSoftLogo from "../../assets/images/nadinSoftLogo.png";
@@ -10,6 +11,7 @@ import calender2 from "../../assets/icons/calendar_month2.png";
 
 function Footer() {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -32,12 +34,10 @@ function Footer() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          //   px: "200px",
           height: "100%",
         }}
         className={styles.container}
       >
-        {/* --- Left side --- */}
         <Box
           sx={{
             display: "flex",
@@ -60,8 +60,7 @@ function Footer() {
               fontSize: "1rem",
             }}
           >
-            All rights of this site are reserved for Nadin Sadr Aria Engineering
-            Company.
+            {t("dashboard.footer.rules")}
           </Typography>
         </Box>
 
@@ -84,7 +83,7 @@ function Footer() {
                 fontSize: "1rem",
               }}
             >
-              contact us : info@nadin.ir
+              {t("dashboard.footer.contact")}
             </Typography>
           </Box>
 
@@ -103,7 +102,7 @@ function Footer() {
                 fontSize: "1rem",
               }}
             >
-              12:25 . Monday 23 December 2023
+              {t("dashboard.footer.date")}
             </Typography>
           </Box>
         </Box>

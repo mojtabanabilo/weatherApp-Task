@@ -19,12 +19,14 @@ i18n.use(initReactI18next).init({
           },
           modal: {
             mode: "Mode",
+            dark: "Dark",
+            light: "Light",
             language: "Language",
             exit: "Exit",
           },
           cityStatus: {
             location: "",
-            day: "",
+            day: "Monday",
             date: "24 Dec, 2023 11:45 AM",
             low: "Low",
             high: "High",
@@ -38,10 +40,16 @@ i18n.use(initReactI18next).init({
           },
           footer: {
             rules:
-              "All rights of this site are reserved for Nadin Sadr Aria Engineering Company.",
+              "All rights of this site are reserved for Nadin Sadr Aria Engineering Company",
             contact: "contact us : info@nadin.ir",
             date: "12:25 . Monday 23 December 2023",
           },
+        },
+        notFound: {
+          title: "Page Not Found",
+          description:
+            "Sorry, the page you’re looking for doesn’t exist or has been moved",
+          btnTitle: "GO HOME",
         },
       },
     },
@@ -61,6 +69,8 @@ i18n.use(initReactI18next).init({
           },
           modal: {
             mode: "حالت",
+            dark: "تیره",
+            light: "روشن",
             language: "زبان",
             exit: "خروج",
           },
@@ -80,17 +90,23 @@ i18n.use(initReactI18next).init({
           },
           footer: {
             rules:
-              "همه حقوق این سایت برای شرکت مهندسی نادین صدر آریا محفوظ است.",
+              "همه حقوق این سایت برای شرکت مهندسی نادین صدر آریا محفوظ است",
             contact: "تماس با ما : info@nadin.ir",
             date: "12.25 شنبه 2 دی 1402",
           },
         },
+        notFound: {
+          title: "صفحه پیدا نشد",
+          description:
+            "متأسفیم، صفحه‌ای که به‌دنبال آن هستید وجود ندارد یا منتقل شده است",
+          btnTitle: "بازگشت",
+        },
       },
     },
   },
-  lng: "en", // زبان پیش‌فرض
-  fallbackLng: "en", // اگر زبان در دسترس نبود
+  lng: "en",
+  fallbackLng: "en",
   interpolation: {
-    escapeValue: false, // چون React خودش از XSS جلوگیری می‌کند
+    escapeValue: false,
   },
 });

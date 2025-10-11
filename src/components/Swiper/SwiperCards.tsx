@@ -6,17 +6,152 @@ import {
   CardActionArea,
   useTheme,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
+
+// images
 import img from "../../assets/images/rainCloud.png";
+import img2 from "../../assets/images/sunCloudy.png";
+import img3 from "../../assets/images/sunny.png";
 
 export default function SwiperCards() {
-  const slides = Array.from({ length: 10 }).map((_, i) => ({
-    id: i,
-    title: "Welcome",
-    subtitle: "26°C",
-    img,
-  }));
-
   const theme = useTheme();
+  const { t, i18n } = useTranslation();
+
+  const weatherData = i18n.language === 'fa' ? [
+    {
+      day: "شنبه",
+      id: 0,
+      icon: img,
+      temp: "28°C",
+    },
+    {
+      day: "یک‌شنبه",
+      id: 1,
+      icon: img2,
+      temp: "31°C",
+    },
+    {
+      day: "دوشنبه",
+      id: 2,
+      icon: img2,
+      temp: "32°C",
+    },
+    {
+      day: "سه‌شنبه",
+      id: 3,
+      icon: img2,
+      temp: "29°C",
+    },
+    {
+      day: "چهار‌شنبه",
+      id: 4,
+      icon: img2,
+      temp: "27°C",
+    },
+    {
+      day: "پنج‌شنبه",
+      id: 5,
+      icon: img3,
+      temp: "30°C",
+    },
+    {
+      day: "جمعه",
+      id: 6,
+      icon: img3,
+      temp: "34°C",
+    },
+    {
+      day: "شنبه",
+      id: 7,
+      icon: img3,
+      temp: "33°C",
+    },
+    {
+      day: "شنبه",
+      id: 7,
+      icon: img3,
+      temp: "33°C",
+    },
+    {
+      day: "شنبه",
+      id: 7,
+      icon: img3,
+      temp: "33°C",
+    },
+    {
+      day: "شنبه",
+      id: 7,
+      icon: img3,
+      temp: "33°C",
+    },
+  ] : [
+    {
+      day: "Sat",
+      id: 0,
+      icon: img,
+      temp: "28°C",
+    },
+    {
+      day: "Son",
+      id: 1,
+      icon: img2,
+      temp: "31°C",
+    },
+    {
+      day: "Tue",
+      id: 2,
+      icon: img2,
+      temp: "32°C",
+    },
+    {
+      day: "Wed",
+      id: 3,
+      icon: img2,
+      temp: "29°C",
+    },
+    {
+      day: "Fri",
+      id: 4,
+      icon: img2,
+      temp: "27°C",
+    },
+    {
+      day: "Thu",
+      id: 5,
+      icon: img3,
+      temp: "30°C",
+    },
+    {
+      day: "Mon",
+      id: 6,
+      icon: img3,
+      temp: "34°C",
+    },
+    {
+      day: "Son",
+      id: 7,
+      icon: img3,
+      temp: "33°C",
+    },
+    {
+      day: "Mon",
+      id: 7,
+      icon: img3,
+      temp: "33°C",
+    },
+    {
+      day: "Wed",
+      id: 7,
+      icon: img3,
+      temp: "33°C",
+    },
+    {
+      day: "Thu",
+      id: 7,
+      icon: img3,
+      temp: "33°C",
+    },
+  ]
 
   return (
     <Box
@@ -32,7 +167,7 @@ export default function SwiperCards() {
         variant="h5"
         sx={{ color: theme.palette.text.primary, fontWeight: 700, mb: 1 }}
       >
-        2 Weeks Forecast
+        {t("dashboard.swiper.title")}
       </Typography>
 
       <Box
@@ -43,16 +178,9 @@ export default function SwiperCards() {
           gap: 2,
           padding: "30px 0",
           scrollBehavior: "smooth",
-          "&::-webkit-scrollbar": {
-            height: "8px",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "#b0b0b0",
-            borderRadius: "4px",
-          },
         }}
       >
-        {slides.map((i) => (
+        {weatherData.map((i) => (
           <Card
             key={i.id}
             sx={{
@@ -77,7 +205,7 @@ export default function SwiperCards() {
                 component="div"
                 sx={{ marginTop: "20px" }}
               >
-                {i.title}
+                {i.day}
               </Typography>
 
               <Box
@@ -99,7 +227,7 @@ export default function SwiperCards() {
                   mt: "30px",
                 }}
                 component="img"
-                image={i.img}
+                image={i.icon}
                 alt="forecast"
               />
 
@@ -107,7 +235,7 @@ export default function SwiperCards() {
                 variant="h6"
                 sx={{ color: "text.secondary", mt: "30px" }}
               >
-                {i.subtitle}
+                {i.temp}
               </Typography>
             </CardActionArea>
           </Card>

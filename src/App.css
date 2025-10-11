@@ -8,3 +8,16 @@
   margin: 0;
   font-family: "yekan", Arial, Helvetica, sans-serif;
 }
+::-webkit-scrollbar {
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a7a7a7;
+  border-radius: 10px;
+  cursor: grab;
+}
+
+::-webkit-scrollbar-track {
+  background: inherit;
+}

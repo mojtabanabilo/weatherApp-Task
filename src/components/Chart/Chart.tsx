@@ -1,4 +1,4 @@
-import { Box, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,6 +11,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import type { ChartData, ChartOptions } from "chart.js";
+import { useTranslation } from "react-i18next";
 
 ChartJS.register(
   CategoryScale,
@@ -24,6 +25,7 @@ ChartJS.register(
 
 function Chart() {
   const theme = useTheme();
+  const { i18n, t } = useTranslation();
 
   const options: ChartOptions<"line"> = {
     responsive: true,
@@ -32,12 +34,13 @@ function Chart() {
       title: {
         display: true,
         align: "start",
-        text: "Average Monthly Temperature",
+        // text: ,
         color: theme.palette.text.primary,
         font: { size: 18 },
         padding: { bottom: 30 },
       },
       tooltip: {
+        rtl: i18n.language === "fa", // ✅ این ویژگی برای tooltip کار می‌کنه
         callbacks: {
           label: function (context: any) {
             return `${context.parsed.y}°C`;
@@ -49,6 +52,7 @@ function Chart() {
       x: {
         ticks: { color: theme.palette.text.primary },
         grid: { display: false },
+        reverse: i18n.language === "fa", // ✅ محور X برعکس می‌شه
       },
       y: {
         min: 10,
@@ -66,20 +70,36 @@ function Chart() {
   };
 
   const data: ChartData<"line"> = {
-    labels: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
+    labels:
+      i18n.language === "en"
+        ? [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ]
+        : [
+            "فروردین",
+            "اردیبهشت",
+            "خرداد",
+            "تیر",
+            "مرداد",
+            "شهریور",
+            "مهر",
+            "آبان",
+            "آذر",
+            "دی",
+            "بهمن",
+            "اسفند",
+          ],
     datasets: [
       {
         label: "Temperature (°C)",
@@ -110,15 +130,18 @@ function Chart() {
 
   return (
     <Box
+      dir={i18n.language === "fa" ? "rtl" : "ltr"}
       sx={{
         width: "100%",
         maxWidth: "1000px",
         height: "250px",
         backgroundColor: theme.palette.custom?.bgComponents ?? "#E1E9EE",
         borderRadius: "24px",
-        padding: "24px",
+        padding: "30px 33px 50px",
+        color: theme.palette.text.primary,
       }}
     >
+      <Typography variant="h6">{t("dashboard.chart.title")}</Typography>
       <Line
         data={data}
         options={{

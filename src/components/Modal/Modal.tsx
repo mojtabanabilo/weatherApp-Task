@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../contexts/Language/LanguageContext";
 import { useTheme } from "../../contexts/Theme/ThemeContext";
 import type { MouseEvent } from "react";
+import { useTranslation } from "react-i18next";
 
 // icon
 import lightIcon from "../../assets/icons/light_mode.png";
@@ -22,12 +23,14 @@ function Modal() {
   const { mode, setMode } = useTheme();
   const muiTheme = useMuiTheme();
   const navigate = useNavigate();
+  const { i18n, t } = useTranslation();
 
   const handleLangChange = (
     _event: MouseEvent<HTMLElement>,
     newLang: "fa" | "en" | null
   ) => {
     if (newLang) setLanguage(newLang);
+    i18n.changeLanguage(newLang as "fa" | "en");
   };
 
   const handleModeChange = (
@@ -55,7 +58,6 @@ function Modal() {
         boxShadow: 3,
       }}
     >
-      {/* Mode Switch */}
       <Box
         sx={{
           display: "flex",
@@ -71,7 +73,7 @@ function Modal() {
             textTransform: "none",
           }}
         >
-          Mode
+          {t("dashboard.modal.mode")}
         </Typography>
 
         <ToggleButtonGroup
@@ -85,25 +87,24 @@ function Modal() {
             <img
               src={lightIcon}
               alt="Light Mode"
-              style={{ width: 13, height: 13, marginRight: 8 }}
+              style={{ width: 13, height: 13, margin: "0 5px" }}
             />
-            Light
+            {t("dashboard.modal.light")}
           </ToggleButton>
 
           <ToggleButton value="dark">
             <img
               src={darkIcon}
               alt="Dark Mode"
-              style={{ width: 13, height: 13, marginRight: 8 }}
+              style={{ width: 13, height: 13, margin: "0 5px" }}
             />
-            Dark
+            {t("dashboard.modal.dark")}
           </ToggleButton>
         </ToggleButtonGroup>
       </Box>
 
       <Divider sx={{ borderColor: "#b1b1b1ff", width: "80%", mt: 2 }} />
 
-      {/* Language Switch */}
       <Box
         sx={{
           display: "flex",
@@ -120,7 +121,7 @@ function Modal() {
             textTransform: "none",
           }}
         >
-          Language
+          {t("dashboard.modal.language")}
         </Typography>
         <ToggleButtonGroup
           color="primary"
@@ -140,7 +141,6 @@ function Modal() {
 
       <Divider sx={{ borderColor: "#b1b1b1ff", width: "80%", mt: 2 }} />
 
-      {/* Logout */}
       <Box
         sx={{
           display: "flex",
@@ -171,7 +171,7 @@ function Modal() {
               textTransform: "none",
             }}
           >
-            Exit
+            {t("dashboard.modal.exit")}
           </Typography>
         </IconButton>
       </Box>

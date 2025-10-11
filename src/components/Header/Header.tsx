@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import styles from "./Header.module.css";
 import Modal from "../Modal/Modal";
+import { useTranslation } from "react-i18next";
 
 // logo
 import weatherLogo from "../../assets/images/weatherLogo.png";
@@ -31,6 +32,7 @@ function Header({ setSelectedCity, city }: HeaderProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
+  const { t, i18n } = useTranslation();
 
   const handleToggleModal = () => {
     setIsModalOpen((prevState) => !prevState);
@@ -61,7 +63,10 @@ function Header({ setSelectedCity, city }: HeaderProps) {
         sx={{
           height: "100px",
           background: theme.palette.background.default,
-          boxShadow: theme.palette.mode === 'light' ? "0 10px 10px #0000001a" : "0 10px 10px #A6A5A526",
+          boxShadow:
+            theme.palette.mode === "light"
+              ? "0 10px 10px #0000001a"
+              : "0 10px 10px #A6A5A526",
         }}
         className={styles.appBar}
       >
@@ -103,7 +108,7 @@ function Header({ setSelectedCity, city }: HeaderProps) {
                 sx={{ color: theme.palette.text.primary, margin: "0 15px" }}
                 className={styles.headerTitle}
               >
-                Weather Dashboard
+                {t("dashboard.header.title")}
               </Typography>
             </Box>
             <Box
@@ -114,7 +119,7 @@ function Header({ setSelectedCity, city }: HeaderProps) {
               <Box component="div" sx={{ minWidth: 300 }}>
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">
-                    Select Your Location
+                    {t("dashboard.header.selectTitle")}
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -124,11 +129,11 @@ function Header({ setSelectedCity, city }: HeaderProps) {
                     sx={{ height: "40px" }}
                     onChange={(e) => setSelectedCity(e.target.value)}
                   >
-                    <MenuItem value="paris">Paris</MenuItem>
-                    <MenuItem value="london">London</MenuItem>
-                    <MenuItem value="tehran">Tehran</MenuItem>
-                    <MenuItem value="new york">New York</MenuItem>
-                    <MenuItem value="sydney">Sydney</MenuItem>
+                    <MenuItem value="paris">{i18n.language === 'en' ? 'Paris' : 'پاریس'}</MenuItem>
+                    <MenuItem value="london">{i18n.language === 'en' ? 'London' : 'لندن'}</MenuItem>
+                    <MenuItem value="tehran">{i18n.language === 'en' ? 'Tehran' : 'تهران'}</MenuItem>
+                    <MenuItem value="new york">{i18n.language === 'en' ? 'New York' : 'نیویورک'}</MenuItem>
+                    <MenuItem value="sydney">{i18n.language === 'en' ? 'Sydney' : 'سیدنی'}</MenuItem>
                   </Select>
                 </FormControl>
               </Box>

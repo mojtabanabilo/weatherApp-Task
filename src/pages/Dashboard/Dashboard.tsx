@@ -7,6 +7,7 @@ import SwiperCards from "../../components/Swiper/SwiperCards";
 import { Box, Container, useTheme } from "@mui/material";
 import { weatherApi } from "../../api";
 import type { IWeatherData } from "../../types/interface";
+import { useTranslation } from "react-i18next";
 const apiKey = "dc1abd15927030a4cd5d36c8da1f4524";
 
 function Dashboard() {
@@ -14,12 +15,13 @@ function Dashboard() {
   const [weatherData, setWeatherdata] = useState<IWeatherData | null>(null);
   const [isPending, startTransition] = useTransition();
   const theme = useTheme();
+  const { i18n } = useTranslation();
 
   const getCurrentWeather = (): void => {
     try {
       startTransition(async () => {
         const response = await weatherApi.get(
-          `/weather?q=${selectedCity}&appid=${apiKey}&lang=fa`
+          `/weather?q=${selectedCity}&appid=${apiKey}&lang=${i18n.language === 'fa' ? 'fa' : 'en'}`
         );
         setWeatherdata(response?.data);
       });
@@ -30,7 +32,7 @@ function Dashboard() {
 
   useEffect(() => {
     getCurrentWeather();
-  }, [selectedCity]);
+  }, [selectedCity, i18n.language]);
 
   return (
     <Box
